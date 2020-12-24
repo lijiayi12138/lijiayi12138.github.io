@@ -7,12 +7,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>123</title>
-    <url>/2020/12/24/123/</url>
-    <content><![CDATA[<p>123</p>
-]]></content>
-  </entry>
-  <entry>
     <title>dfs and bfs</title>
     <url>/2020/12/24/dfs-and-bfs/</url>
     <content><![CDATA[<h2 id="广度搜索和深度搜索的简单使用"><a href="#广度搜索和深度搜索的简单使用" class="headerlink" title="广度搜索和深度搜索的简单使用"></a>广度搜索和深度搜索的简单使用</h2><p>小编我也是一个星期前才学的延迟搜索，当时学习的时候也是十分懵逼啊。<br>但是随着我深入的学习，终于是看出了一点的门道。<br>简单来说<br><strong>dfs就是递归，bfs就是排队</strong><br>接下来我会以题目和代码的形式来解释。</p>
@@ -33,11 +27,6 @@
       <tags>
         <tag>acm</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>article title</title>
-    <url>/2020/12/24/article-title/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Hello World</title>
