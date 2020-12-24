@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>dfs and bfs - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="广度搜索和深度搜索的简单使用小编我也是一个星期前才学的延迟搜索，当时学习的时候也是十分懵逼啊。但是随着我深入的学习，终于是看出了一点的门道。简单来说dfs就是递归，bfs就是排队接下来我会以题目和代,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">dfs and bfs</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">dfs and bfs</h1>
+        <div class="stuff">
+            <span>十二月 24, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/acm/" rel="tag">acm</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="广度搜索和深度搜索的简单使用"><a href="#广度搜索和深度搜索的简单使用" class="headerlink" title="广度搜索和深度搜索的简单使用"></a>广度搜索和深度搜索的简单使用</h2><p>小编我也是一个星期前才学的延迟搜索，当时学习的时候也是十分懵逼啊。<br>但是随着我深入的学习，终于是看出了一点的门道。<br>简单来说<br><strong>dfs就是递归，bfs就是排队</strong><br>接下来我会以题目和代码的形式来解释。</p>
+<p>在一个给定形状的棋盘（形状可能是不规则的）上面摆放棋子，棋子没有区别。要求摆放时任意的两个棋子不能放在棋盘中的同一行或者同一列，请编程求解对于给定形状和大小的棋盘，摆放k个棋子的所有可行的摆放方案C。<br>        Input<br>       输入含有多组测试数据。 </p>
+<p>每组数据的第一行是两个正整数，n k，用一个空格隔开，表示了将在一个n*n的矩阵内描述棋盘，以及摆放棋子的数目。 n &lt;= 8 , k &lt;= n </p>
+<p>当为-1 -1时表示输入结束。 </p>
+<p>随后的n行描述了棋盘的形状：每行有n个字符，其中 # 表示棋盘区域， . 表示空白区域（数据保证不出现多余的空白行或者空白列）。<br>        Output<br>       对于每一组数据，给出一行输出，输出摆放的方案数目C （数据保证C&lt;2^31）。<br>        Sample Input<br>        2 1<br>        #.<br>        .#<br>        4 4<br>        …#<br>        ..#.<br>        .#..<br>        #…<br>       -1 -1<br>        Sample Output<br>        2<br>        1</p>
+<p>这道题就是dfs非常经典的棋盘问题了，当然它在八皇后问题的基础上还加了一些限制条件。<br>主要思路先提前将棋盘存入数组中，然后对每行进行遍历，遍历的过程中要注意将已经放下的棋子那一列进行标记，这样在之后的遍历中这一列就不能放旗子了。另外这题与八皇后问题最大的不同在于它给定了棋子的数目但并没有要求每行都有棋子，因此在递归的过程中要以棋子的数目当做递归的条件。下面附上代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">int arr&#x3D;0;</span><br><span class="line">char maze[8][8];&#x2F;&#x2F;定义棋盘</span><br><span class="line">int used[8];&#x2F;&#x2F;标记列</span><br><span class="line">int n;</span><br><span class="line">void f(int h,int k)&#x2F;&#x2F;dfs</span><br><span class="line">&#123;</span><br><span class="line">    int i;</span><br><span class="line">    if(k&#x3D;&#x3D;0)&#x2F;&#x2F;当棋子摆完，结束遍历</span><br><span class="line">    &#123;</span><br><span class="line">        arr++;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    if(h&gt;&#x3D;n)</span><br><span class="line">        return;&#x2F;&#x2F;如果行数超过棋盘行数返回</span><br><span class="line">    for(i&#x3D;0;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if(used[i]&#x3D;&#x3D;0&amp;&amp;maze[h][i]&#x3D;&#x3D;&#39;#&#39;)&#x2F;&#x2F;遍历</span><br><span class="line">        &#123;</span><br><span class="line">            used[i]&#x3D;1;&#x2F;&#x2F;将这一列标记</span><br><span class="line">            f(h+1,k-1);&#x2F;&#x2F;对下一行进行遍历</span><br><span class="line">            used[i]&#x3D;0;&#x2F;&#x2F;取消标记</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        f(h+1,k);&#x2F;&#x2F;无论这一行有没有摆放，都开始下一行的遍历</span><br><span class="line">&#125;</span><br><span class="line">int main (void)</span><br><span class="line">&#123;</span><br><span class="line">    int k,i,j;</span><br><span class="line">    while(~scanf(&quot;%d %d&quot;,&amp;n,&amp;k)&amp;&amp;(n!&#x3D;-1&amp;&amp;k!&#x3D;-1))</span><br><span class="line">    &#123;</span><br><span class="line">        memset(maze,0,sizeof(maze));&#x2F;&#x2F;清空数组</span><br><span class="line">        memset(used,0,sizeof(used));</span><br><span class="line">        arr&#x3D;0;</span><br><span class="line">        getchar();</span><br><span class="line">        for(i&#x3D;0;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for(j&#x3D;0;j&lt;n;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                scanf(&quot;%c&quot;,&amp;maze[i][j]);&#x2F;&#x2F;定义棋盘</span><br><span class="line">            &#125;</span><br><span class="line">            getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        f(0,k);</span><br><span class="line">        printf(&quot;%d\n&quot;,arr);&#x2F;&#x2F;输出个数</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>看到这里想必你对dfs已经有一定了解了，然而dfs的缺点也是显而易见的，这就是一个一条路走到黑的方法，在寻找最优解上并不太适用，所以bfs就很好的解决了这个问题。</strong><br>接下来我们还是以题目和代码的形式说明。<br>     Farmer John has been informed of the location of a fugitive cow and wants to catch her immediately. He starts at a point N ( 0 ≤ N ≤ 100,000) on a number line and the cow is at a point K (0 ≤ K ≤ 100,000) on the same number line. Farmer John has two modes of  transportation: walking and teleporting.<br>    * Walking: FJ can move from any point X to the points X - 1 or X + 1 in a single minute<br>    * Teleporting: FJ can move from any point X to the point 2 × X in a single minute.<br>    If the cow, unaware of its pursuit, does not move at all, how long does it take for Farmer John to retrieve it?<br>        Input<br>       Line 1: Two space-separated integers:<br>       N and  K<br>        Output<br>       Line 1: The least amount of time, in minutes, it takes for Farmer John to catch the fugitive cow.<br>     Sample Input<br>        5 17<br>        Sample Output<br>        4<br>        Hint<br>       The fastest way for Farmer John to reach the fugitive cow is to move along the following path: 5-10-9-18-17, which takes 4 minutes.</p>
+<p>这道题是英文形式，大致的意思就你站在N坐标要去抓一个坐标在K的牛，而你每分钟的行动有三种选择，从X的地方到X+1，X-1或2*X，假设这头牛不会动，问你最快抓到牛的时间。<br><strong>这道题如果用dfs也可以解决，但一是不太容易找到最优解，二是复杂度太高了</strong><br>所以这题我们用bfs解决，之前已经说明了，bfs说白了就是排队，将每一步的所有可能性放入队列中，再往后推，直到到达目标为止。<br>所以这题的思路也非常明确：<br>将每一分钟所做的所有行动排入队列中，直到抓到牛为止，接下来附上代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">struct note&#x2F;&#x2F;定义坐标和步数</span><br><span class="line">&#123;</span><br><span class="line">    int x;</span><br><span class="line">    int s;</span><br><span class="line">&#125;;</span><br><span class="line">int main (void)</span><br><span class="line">&#123;</span><br><span class="line">    int x1,x2,tx;</span><br><span class="line">    int head,tail;&#x2F;&#x2F;定义头和尾</span><br><span class="line">    int i;</span><br><span class="line">    int used[100005];</span><br><span class="line">    int flag&#x3D;0;</span><br><span class="line">    int sum&#x3D;0;</span><br><span class="line">    struct note que[100005];&#x2F;&#x2F;定义队列</span><br><span class="line">    memset(used,0,sizeof(used));</span><br><span class="line">    scanf(&quot;%d %d&quot;,&amp;x1,&amp;x2);</span><br><span class="line">    head&#x3D;1;&#x2F;&#x2F;将队首队尾都设置为1</span><br><span class="line">    tail&#x3D;1;</span><br><span class="line">    que[head].x&#x3D;x1;&#x2F;&#x2F;将初始坐标存入队首</span><br><span class="line">    que[head].s&#x3D;0;&#x2F;&#x2F;将步数定为0</span><br><span class="line">    tail++;&#x2F;&#x2F;队尾向后推</span><br><span class="line">    while(head&lt;tail)</span><br><span class="line">    &#123;</span><br><span class="line">        if(que[head].x&#x3D;&#x3D;x2)&#x2F;&#x2F;当到达目标点，停止排队</span><br><span class="line">            break;</span><br><span class="line">        for(i&#x3D;1; i&lt;&#x3D;3; i++)&#x2F;&#x2F;分别列出三种可能的行动方式</span><br><span class="line">        &#123;</span><br><span class="line">            if(i&#x3D;&#x3D;1)</span><br><span class="line">                tx&#x3D;que[head].x+1;</span><br><span class="line">            else if(i&#x3D;&#x3D;2)</span><br><span class="line">                tx&#x3D;que[head].x-1;</span><br><span class="line">            else</span><br><span class="line">                tx&#x3D;que[head].x*2;</span><br><span class="line">            if(tx&lt;0||tx&gt;100000)&#x2F;&#x2F;走出所给定范围则不存入队列</span><br><span class="line">                continue;</span><br><span class="line">            if(used[tx]&#x3D;&#x3D;0)</span><br><span class="line">            &#123;</span><br><span class="line">                used[tx]&#x3D;1;&#x2F;&#x2F;对走过的点进行标记，避免重复</span><br><span class="line">                que[tail].x&#x3D;tx;&#x2F;&#x2F;将可能的坐标存入队尾</span><br><span class="line">                que[tail].s&#x3D;que[head].s+1;&#x2F;&#x2F;步数是队首所存的步数+1</span><br><span class="line">                tail++;队尾后推</span><br><span class="line">            &#125;</span><br><span class="line">            if(tx&#x3D;&#x3D;x2)&#x2F;&#x2F;到达目标，退出循环</span><br><span class="line">            &#123;</span><br><span class="line">                flag&#x3D;1;&#x2F;&#x2F;利用flag退出两层循环</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        if(flag&#x3D;&#x3D;1)</span><br><span class="line">            break;</span><br><span class="line">        head++;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\n&quot;,que[tail-1].s);&#x2F;&#x2F;由于最后队尾又后推一格，所以应该是队尾的前一格的步数。</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这就是对深度搜索和广度搜索的简单讲解，学的时间并不长，如有不足，欢迎指正。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
