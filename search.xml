@@ -43,6 +43,25 @@
 ]]></content>
   </entry>
   <entry>
+    <title>vim学习(一)</title>
+    <url>/2020/12/25/vim%E5%AD%A6%E4%B9%A0-%E4%B8%80/</url>
+    <content><![CDATA[<h4 id="基础保存插入操作"><a href="#基础保存插入操作" class="headerlink" title="基础保存插入操作"></a>基础保存插入操作</h4><p><code>vim</code> ：进入vim，默认为normal默示</p>
+<p>normal模式下：</p>
+<p><code>i</code> ：插入模式</p>
+<p><code>:wq</code> ：保存</p>
+<p><code>[range]s/&#123;string1&#125;/&#123;string2&#125;/[flags]</code>：替换，range为范围，%表示全部，string1为被替代的字符串，string2为替代的字符串，flags表示标志，如果是全局则用g。</p>
+<p>例：%s/int/long long/u 表示用long long替代全部的int</p>
+<p><strong>返回键</strong>退出插入模式</p>
+<p>ctr+z：强制退出normal</p>
+<h4 id="编译一个c-程序"><a href="#编译一个c-程序" class="headerlink" title="编译一个c++程序"></a>编译一个c++程序</h4><p><code>vim x.cpp</code>  创建一个cpp文件</p>
+<p><code>g++ x.vpp</code>  编译该文件</p>
+<p><code>./a.out</code>  运行 </p>
+]]></content>
+      <tags>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sam</title>
     <url>/2020/12/24/sam/</url>
     <content><![CDATA[<h2 id="后缀数组小结"><a href="#后缀数组小结" class="headerlink" title="后缀数组小结"></a>后缀数组小结</h2><p>后缀数组也算是拖了好久了，总算是把题单ak了，小结下就得去搞后缀自动机了，争取南京前把字符串都过一遍。</p>
