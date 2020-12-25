@@ -13,8 +13,8 @@
     <meta name="description" content="基础保存插入操作vim ：进入vim，默认为normal默示
 normal模式下：
 i ：插入模式
-:wq ：保存
-[range]s/&amp;#123;string1&amp;#125;/&amp;#123;string,"> 
+:wq ：保存并退出
+[range]s/&amp;#123;string1&amp;#125;/&amp;#123;str,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -69,7 +69,7 @@ i ：插入模式
             <h4 id="基础保存插入操作"><a href="#基础保存插入操作" class="headerlink" title="基础保存插入操作"></a>基础保存插入操作</h4><p><code>vim</code> ：进入vim，默认为normal默示</p>
 <p>normal模式下：</p>
 <p><code>i</code> ：插入模式</p>
-<p><code>:wq</code> ：保存</p>
+<p><code>:wq</code> ：保存并退出</p>
 <p><code>[range]s/&#123;string1&#125;/&#123;string2&#125;/[flags]</code>：替换，range为范围，%表示全部，string1为被替代的字符串，string2为替代的字符串，flags表示标志，如果是全局则用g。</p>
 <p>例：%s/int/long long/u 表示用long long替代全部的int</p>
 <p><strong>返回键</strong>退出插入模式</p>
