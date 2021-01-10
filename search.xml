@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/12/24/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>dfs and bfs</title>
     <url>/2020/12/24/dfs-and-bfs/</url>
     <content><![CDATA[<h2 id="广度搜索和深度搜索的简单使用"><a href="#广度搜索和深度搜索的简单使用" class="headerlink" title="广度搜索和深度搜索的简单使用"></a>广度搜索和深度搜索的简单使用</h2><p>小编我也是一个星期前才学的延迟搜索，当时学习的时候也是十分懵逼啊。<br>但是随着我深入的学习，终于是看出了一点的门道。<br>简单来说<br><strong>dfs就是递归，bfs就是排队</strong><br>接下来我会以题目和代码的形式来解释。</p>
@@ -37,18 +23,18 @@
       </tags>
   </entry>
   <entry>
-    <title>vim学习(二)</title>
-    <url>/2020/12/30/vim%E5%AD%A6%E4%B9%A0-%E4%BA%8C/</url>
-    <content><![CDATA[<h4 id="多文件分屏操作"><a href="#多文件分屏操作" class="headerlink" title="多文件分屏操作"></a>多文件分屏操作</h4><p><code>vim -o A.txt B.txt </code> 上下分屏</p>
-<p><code>vim -O A.txt B.txt </code> 左右分屏</p>
-<h4 id="vim和终端分屏"><a href="#vim和终端分屏" class="headerlink" title="vim和终端分屏"></a>vim和终端分屏</h4><p><code>:terminal</code> 上下分屏</p>
-<p><code>:vert term</code> 左右分屏</p>
-<h4 id="窗口转换"><a href="#窗口转换" class="headerlink" title="窗口转换"></a>窗口转换</h4><p>Ctrl+ww  窗口转换</p>
-<p>上下左右切换不知道为啥网上找到的指令我这里行不通，搞清楚了再补。</p>
+    <title>Hello World</title>
+    <url>/2020/12/24/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-      <tags>
-        <tag>vim</tag>
-      </tags>
   </entry>
   <entry>
     <title>vim学习(一)</title>
@@ -73,17 +59,31 @@
       </tags>
   </entry>
   <entry>
-    <title>zsh配置</title>
-    <url>/2020/12/25/zsh%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<p>找了半天配置文件发现找不到，就直接用vim命令编辑了…</p>
-<p><code>vim ~/.zshrc</code> 进入配置文件</p>
-<p><code>source ~/.zshrc</code> 不知道干啥的，改完配置都要加一句</p>
-<p>配置文件里 <code>ZSH_THEME=</code> 后面加上主题就可更改主题</p>
-<p><code>plugins=</code> 后面加上插件名就可启用插件</p>
-<p>改完配置不要忘了加<code>source ~/.zshrc</code> </p>
+    <title>vim学习(三)</title>
+    <url>/2021/01/10/vim%E5%AD%A6%E4%B9%A0-%E4%B8%89/</url>
+    <content><![CDATA[<h4 id="vim下的复制粘贴剪切操作"><a href="#vim下的复制粘贴剪切操作" class="headerlink" title="vim下的复制粘贴剪切操作"></a>vim下的复制粘贴剪切操作</h4><p><code>v</code> ：进入可视操作，按方向键决定选中的行</p>
+<p><code>d</code> ：剪切</p>
+<p><code>y</code> ：复制</p>
+<p><code>p</code> ：粘贴</p>
+<h4 id="撤销与恢复撤销"><a href="#撤销与恢复撤销" class="headerlink" title="撤销与恢复撤销"></a>撤销与恢复撤销</h4><p><code>u</code> ：撤销</p>
+<p><code>Ctrl+r</code> ：恢复撤销</p>
 ]]></content>
       <tags>
-        <tag>zsh</tag>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim学习(二)</title>
+    <url>/2020/12/30/vim%E5%AD%A6%E4%B9%A0-%E4%BA%8C/</url>
+    <content><![CDATA[<h4 id="多文件分屏操作"><a href="#多文件分屏操作" class="headerlink" title="多文件分屏操作"></a>多文件分屏操作</h4><p><code>vim -o A.txt B.txt </code> 上下分屏</p>
+<p><code>vim -O A.txt B.txt </code> 左右分屏</p>
+<h4 id="vim和终端分屏"><a href="#vim和终端分屏" class="headerlink" title="vim和终端分屏"></a>vim和终端分屏</h4><p><code>:terminal</code> 上下分屏</p>
+<p><code>:vert term</code> 左右分屏</p>
+<h4 id="窗口转换"><a href="#窗口转换" class="headerlink" title="窗口转换"></a>窗口转换</h4><p>Ctrl+ww  窗口转换</p>
+<p>上下左右切换不知道为啥网上找到的指令我这里行不通，搞清楚了再补。</p>
+]]></content>
+      <tags>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -126,6 +126,20 @@ wq:保存退出</code></pre>
 ]]></content>
       <tags>
         <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>zsh配置</title>
+    <url>/2020/12/25/zsh%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p>找了半天配置文件发现找不到，就直接用vim命令编辑了…</p>
+<p><code>vim ~/.zshrc</code> 进入配置文件</p>
+<p><code>source ~/.zshrc</code> 不知道干啥的，改完配置都要加一句</p>
+<p>配置文件里 <code>ZSH_THEME=</code> 后面加上主题就可更改主题</p>
+<p><code>plugins=</code> 后面加上插件名就可启用插件</p>
+<p>改完配置不要忘了加<code>source ~/.zshrc</code> </p>
+]]></content>
+      <tags>
+        <tag>zsh</tag>
       </tags>
   </entry>
   <entry>
