@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>acm 模板</title>
+    <url>/2021/01/21/acm-%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h3 id="ac自动机"><a href="#ac自动机" class="headerlink" title="ac自动机"></a>ac自动机</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct Trie&#123;&#x2F;&#x2F;AC自动机</span><br><span class="line">    int next[maxn][26],fail[maxn],End[maxn],root,id;</span><br><span class="line">    int newnode()&#123;</span><br><span class="line">        for(int i&#x3D;0;i&lt;26;i++)&#123;</span><br><span class="line">            next[id][i]&#x3D;-1;</span><br><span class="line">        &#125;</span><br><span class="line">        End[id]&#x3D;0;</span><br><span class="line">        return id++;</span><br><span class="line">    &#125;</span><br><span class="line">    void init()&#123;</span><br><span class="line">        id&#x3D;0;</span><br><span class="line">        root&#x3D;newnode();</span><br><span class="line">    &#125;</span><br><span class="line">    void Insert(char *str)&#123;</span><br><span class="line">        int len&#x3D;strlen(str);</span><br><span class="line">        int now&#x3D;root;</span><br><span class="line">        for(int i&#x3D;0;i&lt;len;i++)&#123;</span><br><span class="line">            if(next[now][str[i]-&#39;a&#39;]&#x3D;&#x3D;-1)&#123;</span><br><span class="line">                next[now][str[i]-&#39;a&#39;]&#x3D;newnode();</span><br><span class="line">            &#125;</span><br><span class="line">            now&#x3D;next[now][str[i]-&#39;a&#39;];</span><br><span class="line">        &#125;</span><br><span class="line">        End[now]&#x3D;1;</span><br><span class="line">    &#125;</span><br><span class="line">    void build()&#123;</span><br><span class="line">        queue&lt;int&gt;que;</span><br><span class="line">        for(int i&#x3D;0;i&lt;26;i++)&#123;</span><br><span class="line">            if(next[root][i]&#x3D;&#x3D;-1)&#123;</span><br><span class="line">                next[root][i]&#x3D;root;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                fail[next[root][i]]&#x3D;root;</span><br><span class="line">                que.push(next[root][i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while(!que.empty())&#123;</span><br><span class="line">            int now&#x3D;que.front();</span><br><span class="line">            que.pop();</span><br><span class="line">            for(int i&#x3D;0;i&lt;26;i++)&#123;</span><br><span class="line">                if(next[now][i]&#x3D;&#x3D;-1)&#123;</span><br><span class="line">                    next[now][i]&#x3D;next[fail[now]][i];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    fail[next[now][i]]&#x3D;next[fail[now]][i];</span><br><span class="line">                    que.push(next[now][i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            End[now]|&#x3D;End[fail[now]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;ac;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>acm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>dfs and bfs</title>
     <url>/2020/12/24/dfs-and-bfs/</url>
     <content><![CDATA[<h2 id="广度搜索和深度搜索的简单使用"><a href="#广度搜索和深度搜索的简单使用" class="headerlink" title="广度搜索和深度搜索的简单使用"></a>广度搜索和深度搜索的简单使用</h2><p>小编我也是一个星期前才学的延迟搜索，当时学习的时候也是十分懵逼啊。<br>但是随着我深入的学习，终于是看出了一点的门道。<br>简单来说<br><strong>dfs就是递归，bfs就是排队</strong><br>接下来我会以题目和代码的形式来解释。</p>
@@ -59,20 +68,6 @@
       </tags>
   </entry>
   <entry>
-    <title>vim学习(三)</title>
-    <url>/2021/01/10/vim%E5%AD%A6%E4%B9%A0-%E4%B8%89/</url>
-    <content><![CDATA[<h4 id="vim下的复制粘贴剪切操作"><a href="#vim下的复制粘贴剪切操作" class="headerlink" title="vim下的复制粘贴剪切操作"></a>vim下的复制粘贴剪切操作</h4><p><code>v</code> ：进入可视操作，按方向键决定选中的行</p>
-<p><code>d</code> ：剪切</p>
-<p><code>y</code> ：复制</p>
-<p><code>p</code> ：粘贴</p>
-<h4 id="撤销与恢复撤销"><a href="#撤销与恢复撤销" class="headerlink" title="撤销与恢复撤销"></a>撤销与恢复撤销</h4><p><code>u</code> ：撤销</p>
-<p><code>Ctrl+r</code> ：恢复撤销</p>
-]]></content>
-      <tags>
-        <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vim学习(二)</title>
     <url>/2020/12/30/vim%E5%AD%A6%E4%B9%A0-%E4%BA%8C/</url>
     <content><![CDATA[<h4 id="多文件分屏操作"><a href="#多文件分屏操作" class="headerlink" title="多文件分屏操作"></a>多文件分屏操作</h4><p><code>vim -o A.txt B.txt </code> 上下分屏</p>
@@ -81,6 +76,20 @@
 <p><code>:vert term</code> 左右分屏</p>
 <h4 id="窗口转换"><a href="#窗口转换" class="headerlink" title="窗口转换"></a>窗口转换</h4><p>Ctrl+ww  窗口转换</p>
 <p>上下左右切换不知道为啥网上找到的指令我这里行不通，搞清楚了再补。</p>
+]]></content>
+      <tags>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim学习(三)</title>
+    <url>/2021/01/10/vim%E5%AD%A6%E4%B9%A0-%E4%B8%89/</url>
+    <content><![CDATA[<h4 id="vim下的复制粘贴剪切操作"><a href="#vim下的复制粘贴剪切操作" class="headerlink" title="vim下的复制粘贴剪切操作"></a>vim下的复制粘贴剪切操作</h4><p><code>v</code> ：进入可视操作，按方向键决定选中的行</p>
+<p><code>d</code> ：剪切</p>
+<p><code>y</code> ：复制</p>
+<p><code>p</code> ：粘贴</p>
+<h4 id="撤销与恢复撤销"><a href="#撤销与恢复撤销" class="headerlink" title="撤销与恢复撤销"></a>撤销与恢复撤销</h4><p><code>u</code> ：撤销</p>
+<p><code>Ctrl+r</code> ：恢复撤销</p>
 ]]></content>
       <tags>
         <tag>vim</tag>
