@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>acm 模板</title>
+    <url>/2021/01/21/acm-%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h3 id="ac自动机"><a href="#ac自动机" class="headerlink" title="ac自动机"></a>ac自动机</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct Trie&#123;&#x2F;&#x2F;AC自动机</span><br><span class="line">    int next[maxn][26],fail[maxn],End[maxn],root,id;</span><br><span class="line">    int newnode()&#123;</span><br><span class="line">        for(int i&#x3D;0;i&lt;26;i++)&#123;</span><br><span class="line">            next[id][i]&#x3D;-1;</span><br><span class="line">        &#125;</span><br><span class="line">        End[id]&#x3D;0;</span><br><span class="line">        return id++;</span><br><span class="line">    &#125;</span><br><span class="line">    void init()&#123;</span><br><span class="line">        id&#x3D;0;</span><br><span class="line">        root&#x3D;newnode();</span><br><span class="line">    &#125;</span><br><span class="line">    void Insert(char *str)&#123;</span><br><span class="line">        int len&#x3D;strlen(str);</span><br><span class="line">        int now&#x3D;root;</span><br><span class="line">        for(int i&#x3D;0;i&lt;len;i++)&#123;</span><br><span class="line">            if(next[now][str[i]-&#39;a&#39;]&#x3D;&#x3D;-1)&#123;</span><br><span class="line">                next[now][str[i]-&#39;a&#39;]&#x3D;newnode();</span><br><span class="line">            &#125;</span><br><span class="line">            now&#x3D;next[now][str[i]-&#39;a&#39;];</span><br><span class="line">        &#125;</span><br><span class="line">        End[now]&#x3D;1;</span><br><span class="line">    &#125;</span><br><span class="line">    void build()&#123;</span><br><span class="line">        queue&lt;int&gt;que;</span><br><span class="line">        for(int i&#x3D;0;i&lt;26;i++)&#123;</span><br><span class="line">            if(next[root][i]&#x3D;&#x3D;-1)&#123;</span><br><span class="line">                next[root][i]&#x3D;root;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                fail[next[root][i]]&#x3D;root;</span><br><span class="line">                que.push(next[root][i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while(!que.empty())&#123;</span><br><span class="line">            int now&#x3D;que.front();</span><br><span class="line">            que.pop();</span><br><span class="line">            for(int i&#x3D;0;i&lt;26;i++)&#123;</span><br><span class="line">                if(next[now][i]&#x3D;&#x3D;-1)&#123;</span><br><span class="line">                    next[now][i]&#x3D;next[fail[now]][i];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    fail[next[now][i]]&#x3D;next[fail[now]][i];</span><br><span class="line">                    que.push(next[now][i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            End[now]|&#x3D;End[fail[now]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;ac;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const int N &#x3D; 1005;</span><br><span class="line">int Next[N][4], fail[N], val[N], sz, n, res;</span><br><span class="line">char str[N];</span><br><span class="line">map&lt;char, int&gt; mp;</span><br><span class="line">void init() &#123;</span><br><span class="line">    memset(Next[0], 0, sizeof(Next[0]));</span><br><span class="line">    val[0] &#x3D; 0;</span><br><span class="line">    sz &#x3D; 1;</span><br><span class="line">&#125;</span><br><span class="line">void insert(char *s) &#123;</span><br><span class="line">    int u &#x3D; 0, len &#x3D; strlen(s);</span><br><span class="line">    for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">        int k &#x3D; mp[s[i]];</span><br><span class="line">        if (!Next[u][k]) &#123;</span><br><span class="line">            memset(Next[sz], 0, sizeof(Next[sz]));</span><br><span class="line">            val[sz] &#x3D; 0;</span><br><span class="line">            Next[u][k] &#x3D; sz++;</span><br><span class="line">        &#125;</span><br><span class="line">        u &#x3D; Next[u][k];</span><br><span class="line">    &#125;</span><br><span class="line">    val[u] ++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void getFail() &#123;</span><br><span class="line">    queue&lt;int&gt; Q;</span><br><span class="line">    fail[0] &#x3D; 0;</span><br><span class="line">    for (int i &#x3D; 0; i &lt; 4; i++)</span><br><span class="line">        if (Next[0][i]) &#123;</span><br><span class="line">            fail[Next[0][i]] &#x3D; 0;</span><br><span class="line">            Q.push(Next[0][i]);</span><br><span class="line">        &#125;</span><br><span class="line">    while (!Q.empty()) &#123;</span><br><span class="line">        int u &#x3D; Q.front();</span><br><span class="line">        Q.pop();</span><br><span class="line">        val[u] +&#x3D; val[fail[u]];</span><br><span class="line">        for (int i &#x3D; 0; i &lt; 4; i++) &#123;</span><br><span class="line">            if (!Next[u][i])</span><br><span class="line">                Next[u][i] &#x3D; Next[fail[u]][i];</span><br><span class="line">            else &#123;</span><br><span class="line">                fail[Next[u][i]] &#x3D; Next[fail[u]][i];</span><br><span class="line">                Q.push(Next[u][i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="数论"><a href="#数论" class="headerlink" title="数论"></a>数论</h1><h3 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;O(n)的筛法，每个合数只被它的最小质因子筛一次</span><br><span class="line">&#x2F;&#x2F;每一次的外循环筛出i和找到的质数</span><br><span class="line">int  maxn;</span><br><span class="line">int prime[120000];&#x2F;&#x2F;prime[0]记录当前为止找到的素数的个数，1～n存找到的素数</span><br><span class="line">int visit[120000];&#x2F;&#x2F;0表示是素数</span><br><span class="line">void Prime()</span><br><span class="line">&#123;</span><br><span class="line">    memset(visit,0,sizeof(visit));</span><br><span class="line">    memset(prime, 0,sizeof(prime));</span><br><span class="line">    for (int i &#x3D; 2; i &lt;&#x3D; maxn; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot; i &#x3D; &quot;&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">        if (!visit[i])</span><br><span class="line">        &#123;</span><br><span class="line">            prime[++prime[0]] &#x3D; i;&#x2F;&#x2F;记录素数的个数，同时存找到的素数</span><br><span class="line">        &#125;</span><br><span class="line">        for (int j &#x3D; 1; j &lt;&#x3D;prime[0] &amp;&amp; i*prime[j] &lt;&#x3D; maxn; j++)&#x2F;&#x2F;遍历每一个已找到的素数</span><br><span class="line">        &#123;</span><br><span class="line">       &#x2F;&#x2F;     cout&lt;&lt;&quot;           j &#x3D; &quot;&lt;&lt;j&lt;&lt;&quot; prime[&quot;&lt;&lt;j&lt;&lt;&quot;]&quot;&lt;&lt;&quot; &#x3D; &quot;&lt;&lt;prime[j]&lt;&lt;&quot; i*prime[j] &#x3D; &quot;&lt;&lt;i*prime[j]&lt;&lt;endl;</span><br><span class="line">            visit[i*prime[j]] &#x3D; 1;&#x2F;&#x2F;这个素数的倍数是合数</span><br><span class="line">            if (i % prime[j] &#x3D;&#x3D; 0)&#x2F;&#x2F;因为每个数只被它的最小质因子筛一次，在此之后的质数不用筛，以后会筛</span><br><span class="line">            &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>acm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>dfs and bfs</title>
     <url>/2020/12/24/dfs-and-bfs/</url>
     <content><![CDATA[<h2 id="广度搜索和深度搜索的简单使用"><a href="#广度搜索和深度搜索的简单使用" class="headerlink" title="广度搜索和深度搜索的简单使用"></a>广度搜索和深度搜索的简单使用</h2><p>小编我也是一个星期前才学的延迟搜索，当时学习的时候也是十分懵逼啊。<br>但是随着我深入的学习，终于是看出了一点的门道。<br>简单来说<br><strong>dfs就是递归，bfs就是排队</strong><br>接下来我会以题目和代码的形式来解释。</p>
@@ -23,16 +34,6 @@
       </tags>
   </entry>
   <entry>
-    <title>acm 模板</title>
-    <url>/2021/01/21/acm-%E6%A8%A1%E6%9D%BF/</url>
-    <content><![CDATA[<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h3 id="ac自动机"><a href="#ac自动机" class="headerlink" title="ac自动机"></a>ac自动机</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct Trie&#123;&#x2F;&#x2F;AC自动机</span><br><span class="line">    int next[maxn][26],fail[maxn],End[maxn],root,id;</span><br><span class="line">    int newnode()&#123;</span><br><span class="line">        for(int i&#x3D;0;i&lt;26;i++)&#123;</span><br><span class="line">            next[id][i]&#x3D;-1;</span><br><span class="line">        &#125;</span><br><span class="line">        End[id]&#x3D;0;</span><br><span class="line">        return id++;</span><br><span class="line">    &#125;</span><br><span class="line">    void init()&#123;</span><br><span class="line">        id&#x3D;0;</span><br><span class="line">        root&#x3D;newnode();</span><br><span class="line">    &#125;</span><br><span class="line">    void Insert(char *str)&#123;</span><br><span class="line">        int len&#x3D;strlen(str);</span><br><span class="line">        int now&#x3D;root;</span><br><span class="line">        for(int i&#x3D;0;i&lt;len;i++)&#123;</span><br><span class="line">            if(next[now][str[i]-&#39;a&#39;]&#x3D;&#x3D;-1)&#123;</span><br><span class="line">                next[now][str[i]-&#39;a&#39;]&#x3D;newnode();</span><br><span class="line">            &#125;</span><br><span class="line">            now&#x3D;next[now][str[i]-&#39;a&#39;];</span><br><span class="line">        &#125;</span><br><span class="line">        End[now]&#x3D;1;</span><br><span class="line">    &#125;</span><br><span class="line">    void build()&#123;</span><br><span class="line">        queue&lt;int&gt;que;</span><br><span class="line">        for(int i&#x3D;0;i&lt;26;i++)&#123;</span><br><span class="line">            if(next[root][i]&#x3D;&#x3D;-1)&#123;</span><br><span class="line">                next[root][i]&#x3D;root;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                fail[next[root][i]]&#x3D;root;</span><br><span class="line">                que.push(next[root][i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while(!que.empty())&#123;</span><br><span class="line">            int now&#x3D;que.front();</span><br><span class="line">            que.pop();</span><br><span class="line">            for(int i&#x3D;0;i&lt;26;i++)&#123;</span><br><span class="line">                if(next[now][i]&#x3D;&#x3D;-1)&#123;</span><br><span class="line">                    next[now][i]&#x3D;next[fail[now]][i];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    fail[next[now][i]]&#x3D;next[fail[now]][i];</span><br><span class="line">                    que.push(next[now][i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            End[now]|&#x3D;End[fail[now]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;ac;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const int N &#x3D; 1005;</span><br><span class="line">int Next[N][4], fail[N], val[N], sz, n, res;</span><br><span class="line">char str[N];</span><br><span class="line">map&lt;char, int&gt; mp;</span><br><span class="line">void init() &#123;</span><br><span class="line">    memset(Next[0], 0, sizeof(Next[0]));</span><br><span class="line">    val[0] &#x3D; 0;</span><br><span class="line">    sz &#x3D; 1;</span><br><span class="line">&#125;</span><br><span class="line">void insert(char *s) &#123;</span><br><span class="line">    int u &#x3D; 0, len &#x3D; strlen(s);</span><br><span class="line">    for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">        int k &#x3D; mp[s[i]];</span><br><span class="line">        if (!Next[u][k]) &#123;</span><br><span class="line">            memset(Next[sz], 0, sizeof(Next[sz]));</span><br><span class="line">            val[sz] &#x3D; 0;</span><br><span class="line">            Next[u][k] &#x3D; sz++;</span><br><span class="line">        &#125;</span><br><span class="line">        u &#x3D; Next[u][k];</span><br><span class="line">    &#125;</span><br><span class="line">    val[u] ++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void getFail() &#123;</span><br><span class="line">    queue&lt;int&gt; Q;</span><br><span class="line">    fail[0] &#x3D; 0;</span><br><span class="line">    for (int i &#x3D; 0; i &lt; 4; i++)</span><br><span class="line">        if (Next[0][i]) &#123;</span><br><span class="line">            fail[Next[0][i]] &#x3D; 0;</span><br><span class="line">            Q.push(Next[0][i]);</span><br><span class="line">        &#125;</span><br><span class="line">    while (!Q.empty()) &#123;</span><br><span class="line">        int u &#x3D; Q.front();</span><br><span class="line">        Q.pop();</span><br><span class="line">        val[u] +&#x3D; val[fail[u]];</span><br><span class="line">        for (int i &#x3D; 0; i &lt; 4; i++) &#123;</span><br><span class="line">            if (!Next[u][i])</span><br><span class="line">                Next[u][i] &#x3D; Next[fail[u]][i];</span><br><span class="line">            else &#123;</span><br><span class="line">                fail[Next[u][i]] &#x3D; Next[fail[u]][i];</span><br><span class="line">                Q.push(Next[u][i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>acm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2020/12/24/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -45,20 +46,6 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>vim学习(三)</title>
-    <url>/2021/01/10/vim%E5%AD%A6%E4%B9%A0-%E4%B8%89/</url>
-    <content><![CDATA[<h4 id="vim下的复制粘贴剪切操作"><a href="#vim下的复制粘贴剪切操作" class="headerlink" title="vim下的复制粘贴剪切操作"></a>vim下的复制粘贴剪切操作</h4><p><code>v</code> ：进入可视操作，按方向键决定选中的行</p>
-<p><code>d</code> ：剪切</p>
-<p><code>y</code> ：复制</p>
-<p><code>p</code> ：粘贴</p>
-<h4 id="撤销与恢复撤销"><a href="#撤销与恢复撤销" class="headerlink" title="撤销与恢复撤销"></a>撤销与恢复撤销</h4><p><code>u</code> ：撤销</p>
-<p><code>Ctrl+r</code> ：恢复撤销</p>
-]]></content>
-      <tags>
-        <tag>vim</tag>
-      </tags>
   </entry>
   <entry>
     <title>vim学习(一)</title>
@@ -77,20 +64,6 @@
 <h4 id="更改配置"><a href="#更改配置" class="headerlink" title="更改配置"></a>更改配置</h4><p><code>cd /etc/vim</code> </p>
 <p><code>sudo vim vimrc</code>  </p>
 <p>直接在后面编辑保存退出即可。</p>
-]]></content>
-      <tags>
-        <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vim学习(二)</title>
-    <url>/2020/12/30/vim%E5%AD%A6%E4%B9%A0-%E4%BA%8C/</url>
-    <content><![CDATA[<h4 id="多文件分屏操作"><a href="#多文件分屏操作" class="headerlink" title="多文件分屏操作"></a>多文件分屏操作</h4><p><code>vim -o A.txt B.txt </code> 上下分屏</p>
-<p><code>vim -O A.txt B.txt </code> 左右分屏</p>
-<h4 id="vim和终端分屏"><a href="#vim和终端分屏" class="headerlink" title="vim和终端分屏"></a>vim和终端分屏</h4><p><code>:terminal</code> 上下分屏</p>
-<p><code>:vert term</code> 左右分屏</p>
-<h4 id="窗口转换"><a href="#窗口转换" class="headerlink" title="窗口转换"></a>窗口转换</h4><p>Ctrl+ww  窗口转换</p>
-<p>上下左右切换不知道为啥网上找到的指令我这里行不通，搞清楚了再补。</p>
 ]]></content>
       <tags>
         <tag>vim</tag>
@@ -133,6 +106,34 @@ V：
 
 末行模式
 wq:保存退出</code></pre>
+]]></content>
+      <tags>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim学习(三)</title>
+    <url>/2021/01/10/vim%E5%AD%A6%E4%B9%A0-%E4%B8%89/</url>
+    <content><![CDATA[<h4 id="vim下的复制粘贴剪切操作"><a href="#vim下的复制粘贴剪切操作" class="headerlink" title="vim下的复制粘贴剪切操作"></a>vim下的复制粘贴剪切操作</h4><p><code>v</code> ：进入可视操作，按方向键决定选中的行</p>
+<p><code>d</code> ：剪切</p>
+<p><code>y</code> ：复制</p>
+<p><code>p</code> ：粘贴</p>
+<h4 id="撤销与恢复撤销"><a href="#撤销与恢复撤销" class="headerlink" title="撤销与恢复撤销"></a>撤销与恢复撤销</h4><p><code>u</code> ：撤销</p>
+<p><code>Ctrl+r</code> ：恢复撤销</p>
+]]></content>
+      <tags>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim学习(二)</title>
+    <url>/2020/12/30/vim%E5%AD%A6%E4%B9%A0-%E4%BA%8C/</url>
+    <content><![CDATA[<h4 id="多文件分屏操作"><a href="#多文件分屏操作" class="headerlink" title="多文件分屏操作"></a>多文件分屏操作</h4><p><code>vim -o A.txt B.txt </code> 上下分屏</p>
+<p><code>vim -O A.txt B.txt </code> 左右分屏</p>
+<h4 id="vim和终端分屏"><a href="#vim和终端分屏" class="headerlink" title="vim和终端分屏"></a>vim和终端分屏</h4><p><code>:terminal</code> 上下分屏</p>
+<p><code>:vert term</code> 左右分屏</p>
+<h4 id="窗口转换"><a href="#窗口转换" class="headerlink" title="窗口转换"></a>窗口转换</h4><p>Ctrl+ww  窗口转换</p>
+<p>上下左右切换不知道为啥网上找到的指令我这里行不通，搞清楚了再补。</p>
 ]]></content>
       <tags>
         <tag>vim</tag>
